@@ -1,0 +1,61 @@
+Given a string str. The task is to find the maximum occurring character in the string str. 
+If more than one character occurs the maximum number of time then print the lexicographically smaller character.
+
+Example 1:
+Input:
+str = testsample
+Output: e
+Explanation: e is the character which is having the highest frequency.
+
+//code:
+
+//{ Driver Code Starts
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+class GFG
+{
+	public static void main (String[] args) throws IOException
+	{
+	 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	 int tc=Integer.parseInt(br.readLine().trim());
+	 
+	 while(tc-- >0)
+	 {
+	     String line=br.readLine().trim();
+	     Solution obj = new Solution();	     
+	     System.out.println(obj.getMaxOccuringChar(line));
+	     
+	 }
+	 }
+}
+// } Driver Code Ends
+
+class Solution
+{
+    //Function to find the maximum occurring character in a string.
+    public static char getMaxOccuringChar(String line)
+    {
+        // Your code here
+        ArrayList<Character> list = new ArrayList<>();
+        HashMap<Character,Integer> m = new HashMap<>();
+        for(int i=0;i<line.length();i++){
+            m.put(line.charAt(i),m.getOrDefault(line.charAt(i),0)+1);
+        }
+        int max = 0;
+        for(Map.Entry x : m.entrySet()){
+            max = Math.max(max,(Integer)x.getValue());
+        }
+
+        for(Map.Entry x : m.entrySet()){
+            if((Integer)x.getValue()==max){
+                list.add((Character)x.getKey());
+            }
+        }
+        int minChar = list.get(0);
+        for(int i=1;i<list.size();i++){
+            minChar = Math.min(minChar,list.get(i));
+        }
+        return (char)minChar;
+    }
+}
