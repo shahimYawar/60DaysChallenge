@@ -1,0 +1,72 @@
+Given a string consisting of lowercase english alphabets, reverse only the vowels present in it and print the resulting string.
+
+Example 1:
+
+Input:
+S = "geeksforgeeks"
+Output: geeksforgeeks
+Explanation: The vowels are: e, e, o, e, e
+Reverse of these is also e, e, o, e, e.
+
+Example 2:
+
+Input: 
+S = "practice"
+Output: prectica
+Explanation: The vowels are a, i, e
+Reverse of these is e, i, a.
+
+
+//Code :
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GFG
+{
+    public static void main(String args[])throws IOException
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0)
+        {
+            String s;
+            s = sc.next();
+           
+            Solution ob = new Solution();
+            
+            System.out.println(ob.modify(s));    
+        }
+    }
+}
+// } Driver Code Ends
+
+
+
+//User function Template for Java
+class Solution
+{
+    String modify (String s)
+    {
+        // your code here
+        Stack<Character> v=new Stack<>();
+        char[] str=s.toCharArray();
+        s="";
+        for(int i=0;i<str.length; i++){
+            char temp=str[i];
+            if(temp=='a'||temp=='e'||temp=='i'||temp=='o'||temp=='u'){
+                v.push(temp);
+            }
+        }
+        for(int i=0;i<str.length;i++){
+            char temp=str[i];
+            if(temp=='a'||temp=='e'||temp=='i'||temp=='o'||temp=='u'){
+                str[i]=v.pop();
+            }
+            s+=str[i];
+        }
+        return s;
+    }
+}
