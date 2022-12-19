@@ -1,0 +1,45 @@
+Given a string S and two integers L and R. Print the characters in the range L to R of the string.
+NOTE: Assume zero based indexing.
+
+Example 1:
+
+Input: 
+S = "cdbkdub"
+L = 0 , R = 5
+Output: "cdbkdu" 
+Explanation: Starting from index 0 ('c') to index 5 ('u').
+
+//Code :
+//{ Driver Code Starts
+// Initial template for Java
+import java.util.*;
+import java.io.*;
+class GFG {
+    public static void main(String args[]) throws IOException {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        while (t-- > 0) {
+            String S = in.next();
+            int L = in.nextInt();
+            int R = in.nextInt();
+            Solution ob = new Solution();
+
+            System.out.println(ob.javaSub(S, L, R));
+        }
+    }
+}
+// } Driver Code Ends
+
+
+// User function template for Java
+class Solution {
+    static String javaSub(String S, int L, int R) {
+        // code here
+        char[] s=S.toCharArray();
+        String ans="";
+        for(int i=L;i<=R;i++){
+            ans+=s[i];
+        }
+        return ans;
+    }
+}
