@@ -1,0 +1,67 @@
+Given a string S which consists of alphabets , numbers and special characters. You need to write a program to split the strings in three different strings S1, S2 and S3 such that the string S1 will contain all the alphabets present in S , the string S2 will contain all the numbers present in S and S3 will contain all special characters present in S.  The strings S1, S2 and S3 should have characters in same order as they appear in input.
+
+
+Example 1:
+
+Input:
+S = geeks01for02geeks03!!!
+Output:
+geeksforgeeks
+010203
+!!!
+Explanation: The output shows S1, S2 and S3. 
+
+
+//Code :
+
+//{ Driver Code Starts
+
+import java.io.*;
+import java.util.*; 
+
+class GFG{
+    public static void main(String args[]) throws IOException { 
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+
+        while(t-- > 0){
+            String S = sc.nextLine();
+            Solution ob = new Solution();
+            List<String> ans = ob.splitString(S);
+            for (String val: ans) 
+                if(val == "")
+                    System.out.println(-1); 
+                else    
+                    System.out.println(val); 
+        }
+    } 
+} 
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution 
+{ 
+    static List<String> splitString(String S) 
+    { 
+        // code here 
+        ArrayList<String> arr=new ArrayList<>();
+        String s1="";
+        String s2="";
+        String s3="";
+        for(int i=0;i<S.length();i++){
+            char ch=S.charAt(i);
+            if(Character.isAlphabetic(ch)){
+                s1+=ch;
+            }else if(ch>='0'&&ch<='9'){
+                s2+=ch;
+            }else
+                s3+=ch;
+        }
+        arr.add(s1);
+        arr.add(s2);
+        arr.add(s3);
+        return arr;
+    }
+} 
