@@ -1,0 +1,64 @@
+Given an array of size N. The task is to rotate array by D elements where D ≤ N.
+
+Example 1:
+
+Input:
+N = 7
+Arr[] = {1, 2, 3, 4, 5, 6, 7}
+D = 2
+Output: 3 4 5 6 7 1 2
+Explanation: 
+Rotate by 1: [2, 3, 4, 5, 6, 7, 1]
+Rotate by 2: [3, 4, 5, 6, 7, 1, 2]
+
+//Code :
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int tc = Integer.parseInt(br.readLine().trim());
+        while (tc-- > 0) {
+            String[] inputLine;
+            inputLine = br.readLine().trim().split(" ");
+            int n = Integer.parseInt(inputLine[0]);
+            int[] arr = new int[n];
+            inputLine = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                arr[i] = Integer.parseInt(inputLine[i]);
+            }
+            int d = Integer.parseInt(br.readLine().trim());
+
+            new Solution().leftRotate(arr, n, d);
+            for (int i = 0; i < n; i++) {
+                System.out.print(arr[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+// } Driver Code Ends
+
+//User function Template for Java
+
+class Solution {
+    void leftRotate(int[] arr, int n, int d) {
+        // code here
+       int []a=new int [d];
+       for(int i=0; i<d;i++){
+           a[i]=arr[i];
+       }
+       for(int i=0; i<(n-d);i++){
+           arr[i]=arr[i+d];
+       }
+       for(int i=0;i<d;i++){
+           arr[n-d+i]=a[i];
+       }
+    }
+}
