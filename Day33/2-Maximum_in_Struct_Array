@@ -1,0 +1,79 @@
+Given a struct array of type Height, having two elements feet and inches. Find the maximum height among n heights, where height is calculated sum of feet and inches after converting feet into inches.
+
+Example 1:
+
+Input:
+n = 2
+h1 -> 1 2
+h2 -> 2 1
+Output: 
+25
+Explanation:
+(1, 2) and (2, 1) are respective given heights. After converting both heigths in to inches, we get 14 and 25 as respective heights. So, 25 is the maximum height.
+
+
+//Code :
+//{ Driver Code Starts
+import java.util.*;
+import java.lang.*;
+
+class Height
+{
+    int feet;
+    int inches;
+    
+      public Height(int ft, int inc)
+      {
+           feet = ft;
+           inches = inc;
+      }
+}
+
+class maximum
+{
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int n = sc.nextInt();
+            Height arr[] = new Height[n];
+            for(int i = 0; i < n; i++)
+            {
+                int temp1 = sc.nextInt();
+                int temp2 = sc.nextInt();
+                arr[i] = new Height(temp1, temp2);              
+            }
+            GfG gfg = new GfG();
+            
+            int res = gfg.findMax(arr, n);
+            System.out.println(res);
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+// function must return the maximum Height
+// return the height in inches
+class GfG
+{
+    public static int findMax(Height arr[], int n)
+    {
+       // your code here
+       int k=0;
+       int sum= Integer.MIN_VALUE;
+       
+       for(int i=0;i<n;i++){
+           k=arr[i].feet*12;
+           k+=arr[i].inches;
+           if(k>sum){
+               sum=k;
+           }
+           k=0;
+       }
+       return sum;
+    }
+}
