@@ -1,0 +1,76 @@
+Given an array A of size N, the task is to check if the given array represents a Binary Max Heap.
+
+
+Example 1:
+
+Input:  arr[] = {90, 15, 10, 7, 12, 2}
+Output: True
+The given array represents below tree
+       90
+     /    \
+   15      10
+  /  \     /
+7    12  2
+The tree follows max-heap property as every node is greater than all of its descendants.
+
+
+
+// Code :
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+	        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t =
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            long n = Long.parseLong(br.readLine().trim());
+            long a[] = new long[(int)(n)];
+            // long getAnswer[] = new long[(int)(n)];
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Long.parseLong(inputLine[i]);
+            }
+            
+            Solution obj = new Solution();
+            System.out.println(obj.countSub(a, n) ? 1:0);
+            
+        }
+	}
+}
+
+
+// } Driver Code Ends
+
+//User function Template for Java
+
+class Solution {
+    
+    public boolean countSub(long arr[], long n)
+    {
+        // Your code goes here
+        for(long i=0;i<=n/2;i++){
+            long index = i*2+1;
+            if(index<n){
+                if(arr[(int)i]<arr[(int)index]){
+                    return false;
+                }
+            }
+            if(index+1<n){
+                if(arr[(int)i]<arr[(int)index+1]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
