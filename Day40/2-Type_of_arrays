@@ -1,0 +1,108 @@
+You are given an array of size N having no duplicate elements. The array can be categorized into the following:
+1.  Ascending
+2.  Descending
+3.  Descending Rotated
+4.  Ascending Rotated
+Your task is to return which type of array it is and the maximum element of that array.
+
+Example 1:
+
+Input :
+N = 5 
+A[] = { 2, 1, 5, 4, 3}
+Output :
+5 3
+Explanation:
+Descending rotated with maximum element 5 
+
+//Code :
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class pair  
+{  
+    long first, second;  
+    public pair(long first, long second)  
+    {  
+        this.first = first;  
+        this.second = second;  
+    }  
+}
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+	        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t =
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            long n = Long.parseLong(br.readLine().trim());
+            long a[] = new long[(int)(n)];
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Long.parseLong(inputLine[i]);
+            }
+            
+            Solution obj = new Solution();
+            pair product = obj.maxNtype(a, n);  
+            System.out.println(product.second+" "+product.first);
+        }
+	}
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution {
+    
+    static pair maxNtype(long arr[], long n)
+    {
+        long max = arr[0];
+        long min = arr[0];
+        long type=1;
+        long max_index = 0;
+        long min_index = 0;
+        
+        for(long i=0;i<n;i++){
+            if(max < arr[(int)i]){
+                max = arr[(int)i];
+                max_index=i;
+            }
+            if(min>arr[(int)i]){
+                min=arr[(int)i];
+                min_index=i;
+            }
+        }
+        if(max_index == n-1){
+            if(min_index == 0){
+                type= 1;
+            }
+            else{ 
+                type=3;
+            }
+        }else if(max_index==0){
+            if(min_index==n-1){
+                type=2;
+            }
+            else{
+                type=4;
+            }
+        }
+        else if(arr[(int)(max_index-1)]<arr[(int)(max_index+1)]){
+            type=3;
+        }else{
+            type = 4;
+        }
+        return new pair(type,max);        
+    }
+}
+
