@@ -1,0 +1,68 @@
+Given an array Arr[], write a program that segregates even and odd numbers. The program should put all even numbers first in sorted order, and then odd numbers in sorted order.
+
+Example 1:
+
+Input: 
+N = 7
+Arr[] = {12, 34, 45, 9, 8, 90, 3}
+Output: 8 12 34 90 3 9 45
+Explanation: Even numbers are 12, 34, 8 and 90. Rest are odd numbers. After sorting even numbers 8 12 34 90 and after sorting odd numbers 3 9 45. Then concat both.
+
+
+//Code :
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int tc = Integer.parseInt(br.readLine().trim());
+        while (tc-- > 0) {
+            String[] inputLine;
+            int n = Integer.parseInt(br.readLine().trim());
+            int[] arr = new int[n];
+            inputLine = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                arr[i] = Integer.parseInt(inputLine[i]);
+            }
+
+            new Solution().segregateEvenOdd(arr, n);
+            for (int i = 0; i < n; i++) {
+                System.out.print(arr[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution {
+    void segregateEvenOdd(int arr[], int n) {
+        // code here
+        Arrays.sort(arr);
+        ArrayList<Integer> a=new ArrayList<>();
+        ArrayList<Integer> b=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            if(arr[i]%2==0)
+                a.add(arr[i]);
+            else
+                b.add(arr[i]);
+        }
+        int j=0;
+        for(int i=0;i<n;i++){
+            if(i<a.size())
+                arr[i]=a.get(i);
+            else{
+                arr[i]=b.get(j);
+                j++;
+            }
+        }
+    }
+}
