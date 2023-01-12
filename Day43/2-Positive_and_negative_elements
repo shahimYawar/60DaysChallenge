@@ -1,0 +1,94 @@
+Given an array arr[ ] containing equal number of positive and negative elements, arrange the array such that every positive element is followed by a negative element.
+Note- The relative order of positive and negative numbers should be maintained.
+
+Example 1:
+
+Input:
+N = 6
+arr[] = {-1, 2, -3, 4, -5, 6}
+Output:  
+2 -1 4 -3 6 -5
+Explanation: Positive numbers in order are 2, 4 and 6. Negative numbers in order are -1, -3 and -5. So the arrangement we get is 2, -1, 4, -3, 6 and -5.
+
+//Code :
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+
+
+//Initial Template for Java
+
+
+
+import java.io.*;
+import java.util.*;
+
+
+class Array {
+
+    // Driver code
+    public static void main(String[] args) throws IOException {
+        // Taking input using buffered reader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int testcases = Integer.parseInt(br.readLine());
+        // looping through all testcases
+        while (testcases-- > 0) {
+            int n = Integer.parseInt(br.readLine());
+//            String line = br.readLine();
+//            String[] q = line.trim().split("\\s+");
+//            int n =Integer.parseInt(q[0]);
+//            int m =Integer.parseInt(q[1]);
+//            //int y =Integer.parseInt(q[2]);
+            String line1 = br.readLine();
+            String[] a1 = line1.trim().split("\\s+");
+            long a[] = new long[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = Long.parseLong(a1[i]);
+            }
+    //        int k = Integer.parseInt(br.readLine());
+//            String line2 = br.readLine();
+//            String[] a2 = line2.trim().split("\\s+");
+//            long b[] = new long[m];
+//            for (int i = 0; i < m; i++) {
+//                b[i] = Long.parseLong(a2[i]);
+//            }
+     //       int k = Integer.parseInt(br.readLine());
+            Solution ob = new Solution();
+            ArrayList<Long> ans=ob.arranged(a,n);
+            for(int i=0;i<n;i++)
+                System.out.print(ans.get(i)+" ");
+            System.out.println();
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+
+
+//User function Template for Java
+
+class Solution
+{
+    ArrayList<Long> arranged(long a[], int n)
+    {
+    ArrayList<Long> p=new ArrayList<>();
+    ArrayList<Long> neg=new ArrayList<>();
+    ArrayList<Long> c=new ArrayList<>();
+    for(int i=0;i<n;i++){
+        if(a[i]<0)
+            neg.add(a[i]);
+        else
+            p.add(a[i]);
+    }
+    while(!p.isEmpty() || !neg.isEmpty()){
+        c.add(p.remove(0));
+        c.add(neg.remove(0));
+    }
+
+    return c;
+    }
+}
