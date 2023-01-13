@@ -1,0 +1,70 @@
+Given an array of N positive integers. You need to write a program to print the minimum product of k integers of the given array.
+
+Note: Since output could be large, hence module 10^9+7 and then print answer.
+
+Example 1:
+
+Input : Arr[] = {1, 2, 3, 4, 5}, K = 2
+Output : 2
+Explanation:
+If we have an array [1, 2, 3, 4, 5]. 
+We will get the minimum product after multiplying
+1 and 2 that is 2.
+So, the answer is 2.
+
+
+//Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+
+class GFG {
+	public static void main (String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        int t = sc.nextInt();
+        while(t-- > 0)
+        {
+            int n = sc.nextInt();
+            int a[] = new int[n];
+            
+            for(int i=0;i<n;i++){
+                a[i] = sc.nextInt();
+            }
+            int k = sc.nextInt();
+            
+            Solution obj = new Solution();
+            
+            System.out.println(obj.minProduct(a,n,k));
+        }
+	}
+}
+
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution{
+    
+    int minProduct(int arr[], int n,int k)
+    {
+        // Complete the function
+        Arrays.sort(arr);
+        long minProduct=1;
+        int i=0;
+        while(k>0){
+            minProduct=(minProduct*(long)arr[i])%1000000007;
+            i++;
+            k--;
+        }
+        return (int)minProduct%1000000007;
+    }   
+}
