@@ -1,0 +1,60 @@
+Your friend loves magic and he has coined a new term - "Magical number". To perform his magic, he needs that Magic number. There are N number of people in the magic show, seated according to their ages in ascending order. A magical number is that seat no. where the person has the same age as that of the given seat number.
+Help your friend in finding out that "Magical number".
+
+Example:
+
+Input:
+1
+10
+-10 -1 0 3 10 11 30 50 100 150
+
+Output:
+3
+
+// Code :
+
+//{ Driver Code Starts
+import java.util.*;
+
+class Magic
+{
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int n = sc.nextInt();
+            int arr[] = new int[n];
+            
+            for(int i = 0; i < n; i++)
+                  arr[i] = sc.nextInt();
+            
+            GfG gfg = new GfG();  
+            System.out.println(gfg.binarySearch(arr, 0, n-1));
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+
+
+class GfG
+{
+    public static int binarySearch(int arr[], int low, int high)
+    {
+        // your code here
+        while(low<=high){
+            int mid=(low+high)/2;
+                if(mid==arr[mid])
+                    return mid;
+                else if(mid>arr[mid]){
+                    low=mid+1;
+                }else
+                    high=mid-1;
+        }
+        return -1;
+    }
+}
