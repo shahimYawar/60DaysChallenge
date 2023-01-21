@@ -1,0 +1,100 @@
+Given an array of n integers. Find the minimum positive number to be inserted in array, so that sum of all elements of array becomes prime. If sum is already prime, then return 0.
+
+Example 1:
+
+Input:
+N=5
+arr[] = { 2, 4, 6, 8, 12 }
+Output:  5
+Explanation: 
+The sum of the array is 32 ,we can add 5 to this to make it 37 which is a prime number.
+
+
+// Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+
+// } Driver Code Ends
+//User function Template for Java
+
+
+class GFG
+{
+    static boolean isPrime(long num){
+        if(num<=1){
+            return false;
+        }
+        for(int i=2;i<num/2;i++){
+            if(num%i==0){
+                return false;
+            }
+        }
+        return true;
+    }
+    long minNumber(long arr[], int N)
+    {
+        long sum=0;
+        for(int i=0;i<N;i++){
+            sum+=arr[i];
+        }
+        if(isPrime(sum)){
+            return 0;
+        }
+        for(long i=1;i<sum;i++){
+            if(isPrime(i+sum)){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+
+//{ Driver Code Starts.
+
+// Driver class
+class Array {
+
+    // Driver code
+    public static void main(String[] args) throws IOException {
+        // Taking input using buffered reader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int testcases = Integer.parseInt(br.readLine());
+        // looping through all testcases
+        while (testcases-- > 0) {
+            int n = Integer.parseInt(br.readLine());
+//            String line = br.readLine();
+//            String[] q = line.trim().split("\\s+");
+//            int n =Integer.parseInt(q[0]);
+//            int m =Integer.parseInt(q[1]);
+//            //int y =Integer.parseInt(q[2]);
+            String line1 = br.readLine();
+            String[] a1 = line1.trim().split("\\s+");
+            long a[] = new long[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = Long.parseLong(a1[i]);
+            }
+    //        int k = Integer.parseInt(br.readLine());
+//            String line2 = br.readLine();
+//            String[] a2 = line2.trim().split("\\s+");
+//            long b[] = new long[n];
+//            for (int i = 0; i < n; i++) {
+//                b[i] = Long.parseLong(a2[i]);
+//            }
+            GFG ob = new GFG();
+            long ans=ob.minNumber(a,n);
+            System.out.println(ans);
+        }
+    }
+}
+
+
+
+// } Driver Code Ends
