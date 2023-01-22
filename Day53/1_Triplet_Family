@@ -1,0 +1,76 @@
+Given an array A of integers. Find three numbers such that sum of two elements equals the third element and return the triplet in a container result, if no such triplet is found return the container as empty.
+
+Input:
+First line of input contains number of testcases. For each testcases there will two lines. First line contains size of array and next line contains array elements.
+
+Output:
+For each test case output the triplets, if any triplet found from the array, if no such triplet is found, output -1.
+
+
+// Code :
+
+
+//{ Driver Code Starts
+import java.util.*;
+
+class Triplet
+{
+    public static void main (String[] args) {
+        Scanner sc= new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int n = sc.nextInt();
+            int arr[] = new int[n];
+            for (int i = 0; i < n; i++)
+              arr[i] = sc.nextInt();
+              
+            GfG gfg = new GfG();
+           ArrayList<Integer> res = new ArrayList<Integer>();
+           res = gfg.findTriplet(arr, n);
+            if(res.size()!=3)System.out.println("-1");
+	    else
+	    {
+	        Collections.sort(res);
+	        if(res.get(0)+res.get(1) == res.get(2))
+	            System.out.println("1");
+	        else
+	             System.out.println("0");
+	    }
+           //System.out.println();
+            
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+class GfG
+{
+    public static ArrayList<Integer> findTriplet(int arr[], int n)
+    {
+        // your code here
+        ArrayList<Integer> result = new ArrayList<>();
+        Arrays.sort(arr);
+        int start;
+        int end;
+        for(int i=0;i<n;i++){
+            start=0;
+            end=n-1;
+            while(start<end){
+                if(arr[start]+arr[end]==arr[i]){
+                    result.add(arr[start]);
+                    result.add(arr[end]);
+                    result.add(arr[i]);
+                    return result;
+                }else if(arr[start]+arr[end]<arr[i]){
+                    start++;
+                }else
+                end--;
+            }
+        }
+        return result;
+    }
+}
