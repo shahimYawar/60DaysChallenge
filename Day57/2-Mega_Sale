@@ -1,0 +1,63 @@
+Mr. Geek is a greedy seller. He has a stock of N laptops which comprises of both useful and useless laptops. Now, he wants to organize a sale to clear his stock of useless laptops. The prices of N laptops are Ai each consisting of positive and negative integers (-ve denoting useless laptops). In a day, he can sell atmost M laptops. Mr. Geek being a greedy seller want to earn maximum profit out of this sale. So, help him maximizing his profit by selling useless laptops.
+
+Example 1:
+
+Input:
+N=4, M=3
+A[] = {-6, 0, 35, 4}
+Output:
+6
+Explanation:
+Geek sells the laptops with price -6 and earns Rs. 6 as profit.
+
+
+// Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+import java.io.*;
+import java.util.*; 
+class GFG{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        while (t-- > 0) {
+            
+            String[] xy = br.readLine().trim().split(" ");
+            int n = Integer.parseInt(xy[0]);
+            int m = Integer.parseInt(xy[1]);
+            
+            
+            String[] str = br.readLine().trim().split(" ");
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++) 
+                a[i] = Integer.parseInt(str[i]);
+            
+            Compute g = new Compute();
+            System.out.println(g.maxProfit(a, n, m));
+        }
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+
+class Compute {
+
+    public static long maxProfit(int a[], int n, int m) {
+        // Your code goes here 
+        Arrays.sort(a);
+        long sum=0;
+        for(int i=0;i<n && i<m;i++){
+            if(a[i]>=0)
+                return sum;
+            else{
+                sum=(sum+(-1*a[i]));
+            }
+        }
+        return sum;
+    }
+}
