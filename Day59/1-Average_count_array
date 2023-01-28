@@ -1,0 +1,89 @@
+You are given an integer 'n' which denote the number of elements in an array a[ ] and an integer 'x'. You have to calculate the average of element a[i] and x and find out if that number exist in array or not. Do it for all the elements of array and store the count result in another array for each index i.
+
+Note: Always take the floor value of the average.
+
+Example 1:
+
+Input : arr[ ] = {2, 4, 8, 6, 2} and X = 2
+Output : 2 0 0 1 2
+Explanation:
+value of n is 5 and that of x is 2. 
+The array is 2 4 8 6 2. We take x i.e. 2 and take average with a[0] whch is equal to 2. We found 2 resides in array at two positions (1st and 5th element) thus storing 2 in another array at 0th index. Similarly do for all elements and store the count in second array.
+
+
+// Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+
+class Array {
+    
+    // Driver code
+	public static void main (String[] args) throws IOException{
+		// Taking input using buffered reader
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int testcases = Integer.parseInt(br.readLine());
+		
+		// looping through all testcases
+		while(testcases-- > 0){
+		    String line = br.readLine();
+		    String[] element = line.trim().split("\\s+");
+		    int N = Integer.parseInt(element[0]);
+		    int X = Integer.parseInt(element[1]);
+		    int arr [] = new int[N];
+		    line = br.readLine();
+		    String[] elements = line.trim().split("\\s+");
+		    for(int i = 0;i<N;i++){
+	            arr[i] = Integer.parseInt(elements[i]);    
+	        }
+	        
+		    Solution obj = new Solution();
+		    ArrayList<Integer> ans;
+		    ans = obj.countArray(arr, N, X);
+    	    for(int i: ans)
+    	        System.out.print(i + " ");
+    	    System.out.println();
+    	
+		}
+	}
+}
+
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+
+class Solution{
+    
+   
+    // Function for finding maximum and value pair
+    public static ArrayList<Integer> countArray (int arr[], int n, int x) {
+        //Complete the function
+        int count,avg;
+        ArrayList<Integer> ar=new ArrayList<Integer>();
+        for(int i=0;i<n;i++){
+            avg=(arr[i]+x)/2;
+            count=0;
+            for(int j=0;j<n;j++){
+                if(avg==arr[j]){
+                    count++;
+                }
+            }
+            ar.add(count);
+        }
+        return ar;
+    }
+    
+    
+}
