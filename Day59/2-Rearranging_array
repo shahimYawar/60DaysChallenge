@@ -1,0 +1,79 @@
+Given a list of integers, rearrange the list such that it consists of alternating minimum-maximum elements using only list operations. The first element of the list should be the minimum of all elements and the second element should be a maximum of all elements present in the list. Similarly, the third element will be the next minimum element and the fourth element is the next maximum element, and so on. Use of extra space is not permitted. Store the answer in the answer[] array. You don't need to print that.
+
+Note : All the elements in the array are unique.
+
+Example 1:
+
+Input
+5
+4 5 1 2 3
+Output
+1 5 2 4 3
+Explanation:
+In the first example minimum element is 1, maximum element is 5, second minimum is 2 and so on, thus the rearranged array is [1, 5, 2, 4, 3]
+
+
+// Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+	        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t =
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            int n = Integer.parseInt(br.readLine().trim());
+            int a[] = new int[n];
+            int answer[] = new int[n];
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(inputLine[i]);
+            }
+            
+            Solution obj = new Solution();
+            obj.Rearrange(a, n, answer);
+            StringBuilder output = new StringBuilder();
+            for(int i=0;i<n;i++)
+            output.append(answer[i]+" ");
+            System.out.println(output);
+            
+        }
+	}
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+
+class Solution {
+
+    public static void Rearrange(int a[], int n, int answer[])
+    {
+    Arrays.sort(a);
+    int i=0;
+    int j=n-1;
+    int k=0;
+    while(i<j){
+        answer[k]=a[i];
+        answer[k+1]=a[j];
+        i++;
+        j--;
+        k+=2;
+    }
+    if(n%2==1){
+        answer[n-1]=a[n/2];
+    }
+    }
+}
