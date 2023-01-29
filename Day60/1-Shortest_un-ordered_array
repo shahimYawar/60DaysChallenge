@@ -1,0 +1,76 @@
+Given an array of n distinct elements. Find the length of shortest unordered (neither increasing nor decreasing) sub array in given array.
+
+ 
+Example 1:
+
+Input:
+n = 5
+a[] = {7, 9, 10, 8, 11}
+Output:
+3
+Explanation:
+Shortest unsorted subarray is 9, 10, 8 which is of 3 elements.
+
+// Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            long n = Long.parseLong(br.readLine().trim());
+            long a[] = new long[(int)(n)];
+            
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Long.parseLong(inputLine[i]);
+            }
+            
+            Solution obj = new Solution();
+            System.out.println(obj.shortestUnorderedSubarray(a, n));
+            
+        }
+	}
+}
+
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution {
+    
+    public long shortestUnorderedSubarray(long arr[], long n)
+    {
+       if(n<3){
+           return 0;
+       }
+       int flag=(arr[0]<arr[1])? 1:0;
+       if(flag==1){
+           for(int i=2;i<(int)n;i++){
+               if(arr[i]<arr[i-1]){
+                   return 3;
+               }
+           }
+       }
+       else{
+           for(int i=2;i<n;i++){
+               if(arr[i]>arr[i-1]){
+                   return 3;
+               }
+           }
+       }
+       return 0;
+    }
+}
