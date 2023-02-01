@@ -1,0 +1,94 @@
+The two countries of A and B are at war against each other. Both countries have N number of soldiers. The power of these soldiers are given by A[i]...A[N] and B[i]....B[N].
+These soldiers have a peculiarity. They can only attack their counterpart enemies, like A[i] can attack only B[i] and not anyone else. A soldier with higher power can kill the enemy soldier. If both soldiers have the same power, they both die. You need to find the winner country.
+
+Example 1:
+
+Input : a[ ] = {2, 2}, b[ ] = {5, 5}
+Output : B
+Explanation:
+Both countries have 2 soldiers. 
+B[0] kills A[0], B[1] kills A[1]. 
+A has 0 soldiers alive at the end. 
+B has both soldiers alive at the end.
+Return "B" as a winner.
+
+
+// Code :
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+
+class Array {
+    
+    // Driver code
+	public static void main (String[] args) throws IOException{
+		// Taking input using buffered reader
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int testcases = Integer.parseInt(br.readLine());
+		
+		// looping through all testcases
+		while(testcases-- > 0){
+		    String line = br.readLine();
+		    String[] element = line.trim().split("\\s+");
+		    int sizeOfArray = Integer.parseInt(element[0]);
+		     
+		    int arr [] = new int[sizeOfArray];
+		    int brr [] = new int[sizeOfArray];
+		    
+		    line = br.readLine();
+		    String[] elements = line.trim().split("\\s+");
+		    for(int i = 0;i<sizeOfArray;i++){
+		        arr[i] = Integer.parseInt(elements[i]);
+		    }
+		    
+		    line = br.readLine();
+		    String[] ele = line.trim().split("\\s+");
+		    for(int i = 0;i<sizeOfArray;i++){
+		        brr[i] = Integer.parseInt(ele[i]);
+		    }
+		    Complete obj = new Complete();
+		    String ans = obj.Country_at_war(arr, brr, sizeOfArray);
+		    System.out.println(ans);
+		}
+	}
+}
+
+
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+
+class Complete{
+    
+   
+    // Function for finding maximum and value pair
+    public static String Country_at_war (int arr[], int brr[], int n) {
+        //Complete the function
+        int ai=0;
+        int bi=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]>brr[i])
+                ai++;
+            else if(arr[i]<brr[i])
+                bi++;
+        }
+        if(ai>bi)
+            return "A";
+        else if(ai<bi)
+            return "B";
+        else
+            return "DRAW";
+    }
+   
+  }
