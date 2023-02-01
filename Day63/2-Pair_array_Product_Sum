@@ -1,0 +1,81 @@
+Given a array a[] of non-negative integers. Count the number of pairs (i, j) in the array such that a[i] + a[j] < a[i]*a[j]. (the pair (i, j) and (j, i) are considered same and i should not be equal to j)
+
+
+Example 1:
+
+Input:
+N=3
+arr[] = {3, 4, 5} 
+Output: 3
+Explanation: Pairs are (3, 4) , (4, 5) and (3,5).  
+
+
+// Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+
+import java.io.*;
+import java.util.*;
+
+
+// } Driver Code Ends
+//User function Template for Java
+
+
+public class Solution
+{ 
+    static int CountPairs (int arr[], int n) 
+    {
+        int count_zero_one = 0;
+        int count_two = 0;
+        
+        for(int x : arr){
+            if(x<2){
+                count_zero_one++;
+            }
+            if(x==2){
+                count_two++;
+            }
+        }
+        int val = n-count_zero_one;
+        int val_pair = (val*(val-1))/2;
+        int minus_two_pair = (count_two * (count_two - 1))/2;
+        
+        return val_pair - minus_two_pair;
+    }
+}
+
+
+//{ Driver Code Starts.
+
+// Driver class
+class Array {
+    
+    // Driver code
+	public static void main (String[] args) throws IOException{
+		// Taking input using buffered reader
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int testcases = Integer.parseInt(br.readLine());
+		// looping through all testcases
+		while(testcases-- > 0){
+		    int n=Integer.parseInt(br.readLine());
+		    String line1 = br.readLine();
+		    String[] a1 = line1.trim().split("\\s+");
+		    int a[]=new int[n];
+		    for(int i=0;i<n;i++)
+		    {
+		        a[i]=Integer.parseInt(a1[i]);
+		    }
+		    Solution ob=new Solution();
+		    int ans=ob.CountPairs(a,n);
+		    System.out.println(ans);
+		    
+		}
+	}
+}
+
+// } Driver Code Ends
