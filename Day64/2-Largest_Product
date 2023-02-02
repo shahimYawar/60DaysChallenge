@@ -1,0 +1,57 @@
+Given an array consisting of N positive integers, and an integer k .You have to find the maximum product of k contiguous elements in the array. Your task is to complete the function which takes three arguments .The first argument  is the array A[ ] and second argument is an integer N denoting the size of the array A[ ] and the third argument  is an integer k.The function will return and value denoting the largest product of sub-array of size k.
+
+Input:
+The first line of input is an integer T denoting the no of test cases. Then T test casesfollow . The first line of each test case are two integer N and K separated by space .The next line contains N space separated values of the array A[ ].
+
+Output:
+Output of each test case will be an integer denoting the largest product of subarray of size k.
+
+
+// Code :
+
+
+//{ Driver Code Starts
+import java.util.*;
+import java.lang.Math;
+
+class Largest_Product_Subarray
+{
+	public static void main(String args[])
+	{
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		
+		while(t>0)
+		{
+			int n = sc.nextInt();
+			int k = sc.nextInt();
+			int arr[]  = new int[n];
+			for(int i=0;i<n;i++)
+				arr[i] = sc.nextInt();
+				
+			GfG g = new GfG();
+			System.out.println(g.findMaxProduct(arr, n , k));
+		t--;
+		}
+	}
+}
+// } Driver Code Ends
+
+
+/*You are required to complete the function*/
+class GfG
+{
+    long findMaxProduct(int A[], int n, int k)
+    {
+	
+      	int product=1;
+       	for(int i=0;i<n-k+1;i++){
+  	        int cproduct=1;
+	          for(int j=i;j<i+k;j++){
+	              cproduct*=A[j];
+	          }
+	          product=Math.max(product,cproduct);
+  	      }
+  	      return product;
+      }
+}
