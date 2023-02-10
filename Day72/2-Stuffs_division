@@ -1,0 +1,69 @@
+Your are given N students with some goodies to be distrubuted among them such that student at ith index gets exactly i amount of goodies (considering no wastage). The goodies has already been distributed by some other. Your task is to check if it can be redistributed such that student at ith index gets i amount of goodies.
+ 
+
+Example 1:
+
+Input:
+N = 5
+Arr = {7, 4, 1, 1, 2}
+Output:
+YES
+Explanation:
+Since, all the goods can be
+redistributed as 1 2 3 4 5 
+(ith students get i number of 
+goodies).So, output is YES.
+
+
+// Code :
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+	        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t =
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            long n = Long.parseLong(br.readLine().trim());
+            long a[] = new long[(int)(n)];
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Long.parseLong(inputLine[i]);
+            }
+            
+            Compute obj = new Compute();
+            System.out.println(obj.possible(a, n) ? "YES" : "NO");
+            
+        }
+	}
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Compute {
+    
+    public boolean possible(long arr[], long n)
+    {
+    long s=n*(n+1)/2;
+    long sum=0;
+    for(int i=0;i<(int)n;i++){
+        sum+=arr[i];
+    }
+    if(s==sum)
+        return true;
+    else
+        return false;
+    }
+}
