@@ -1,0 +1,78 @@
+Given an array Arr of N integers that contains odd number of occurrences for all numbers except for a few elements which are present even number of times. Find the elements which have even occurrences in the array.
+
+
+Example 1:
+
+Input:
+N = 11
+Arr[] = {9, 12, 23, 10, 12, 12, 
+15, 23, 14, 12, 15}
+Output: 12 15 23
+
+
+// Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int tc = Integer.parseInt(br.readLine().trim());
+        while (tc-- > 0) {
+            String[] inputLine;
+            inputLine = br.readLine().trim().split(" ");
+            int n = Integer.parseInt(inputLine[0]);
+            int[] arr = new int[n];
+            inputLine = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                arr[i] = Integer.parseInt(inputLine[i]);
+            }
+
+            int[] ans = new Solution().repeatingEven(arr, n);
+            for (int xx : ans) {
+                System.out.print(xx + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution {
+    int[] repeatingEven(int[] arr, int n) {
+        // code here
+        HashSet<Integer> hs = new HashSet<>();
+        
+        for(int x:arr){
+            hs.add(x);
+        }
+        for(int y:arr){
+            if(hs.contains(y)){
+                hs.remove(y);
+            }else{
+                hs.add(y);
+            }
+        }
+        if(hs.size()==0){
+            int[] result={-1};
+            return result;
+        }
+        int ans[] =new int[hs.size()];
+        int count =0;
+        for(int z:hs){
+            ans[count++]=z;
+        }
+        Arrays.sort(ans);
+        return ans;
+    }
+}
