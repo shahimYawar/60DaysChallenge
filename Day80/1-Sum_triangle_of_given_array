@@ -1,0 +1,89 @@
+Given a array, write a program to construct a triangle where last row contains elements of given array, every element of second last row contains sum of below two elements and so on.
+
+Example 1:
+
+Input:
+A[] = {4, 7, 3, 6, 7};
+Output:
+81 40 41 21 19 22 11 10 9 13 4 7 3 6 7
+Explanation:
+       81
+     40  41
+   21  19  22
+ 11  10   9   13
+4   7   3   6    7 
+
+
+// Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+	        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t =
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            long n = Long.parseLong(br.readLine().trim());
+            long a[] = new long[(int)(n)];
+            // long getAnswer[] = new long[(int)(n)];
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Long.parseLong(inputLine[i]);
+            }
+            
+            Compute obj = new Compute();
+            long Triangle[] = obj.getTriangle(a, n);
+            int sz = Triangle.length;
+            
+            StringBuilder output = new StringBuilder();
+            for(int i=0;i<sz;i++)
+                output.append(Triangle[i]+" ");
+            System.out.println(output);
+            
+        }
+	}
+}
+
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Compute {
+    
+    public long[] getTriangle(long arr[], long n)
+    {
+        ArrayList<Long> reversedList = new ArrayList<Long>();
+        for(int i=(int)n-1;i>=0;i--){
+            reversedList.add(arr[i]);
+        }
+        long pos=n-1;
+        while(pos>0){
+            for(int i=0;i<pos;i++){
+                arr[i]=arr[i]+arr[i+1];
+            }
+            for(int i=(int)pos-1;i>=0;i--){
+                reversedList.add(arr[i]);
+            }
+            pos--;
+        }
+        long[] answer=new long[reversedList.size()];
+        int curr=0;
+        for(int i=reversedList.size()-1;i>=0;i--){
+            answer[curr]=reversedList.get(i);
+            curr++;
+        }
+        return answer;
+    }
+}
