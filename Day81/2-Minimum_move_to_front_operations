@@ -1,0 +1,74 @@
+Given an array arr[] of size n such that array elements are distinct and in the range from 1 to n. The task is to count minimum number of move-to-front operations to arrange items as {1, 2, 3,… n}. The "move-to-front" operation is to pick any element arr[i] and place it at first position.
+
+Example 1:
+
+Input:
+N=4
+arr[] = {3, 2, 1, 4} 
+Output: 2
+Explanation:
+We need to perform "move-to-front" on 1 and 2 to make the array sorted.  
+
+
+// Code :
+
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+
+import java.io.*;
+import java.util.*;
+
+
+// } Driver Code Ends
+//User function Template for Java
+
+
+class Solution  
+{ 
+    static int minMoves(int arr[], int n) 
+    {
+        int curr_val=n;
+        int count=0;
+        for(int i=n-1;i>=0;i--){
+            if(arr[i]==curr_val){
+                count++;
+                curr_val--;
+            }
+        }
+        return n-count;
+    }
+}
+
+//{ Driver Code Starts.
+
+// Driver class
+class Array {
+    
+    // Driver code
+	public static void main (String[] args) throws IOException{
+		// Taking input using buffered reader
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int testcases = Integer.parseInt(br.readLine());
+		// looping through all testcases
+		while(testcases-- > 0){
+		    int n=Integer.parseInt(br.readLine());
+		    String line1 = br.readLine();
+		    String[] a1 = line1.trim().split("\\s+");
+		    int a[]=new int[n];
+		    for(int i=0;i<n;i++)
+		    {
+		        a[i]=Integer.parseInt(a1[i]);
+		    }
+		    Solution ob=new Solution();
+		    int ans=ob.minMoves(a,n);
+		    System.out.println(ans);
+		    
+		}
+	}
+}
+
+
+// } Driver Code Ends
